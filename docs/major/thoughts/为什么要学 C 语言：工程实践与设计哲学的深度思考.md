@@ -1,6 +1,6 @@
 # 为什么要学 C 语言：工程实践与设计哲学的深度思考
 
-[https://www.freecodecamp.org/news/content/images/2021/03/Screenshot-2021-02-09-at-4.20.50-PM.png](https://www.freecodecamp.org/news/content/images/2021/03/Screenshot-2021-02-09-at-4.20.50-PM.png) 
+![https://www.freecodecamp.org/news/content/images/2021/03/Screenshot-2021-02-09-at-4.20.50-PM.png](https://www.freecodecamp.org/news/content/images/2021/03/Screenshot-2021-02-09-at-4.20.50-PM.png) 
 
 
 在计算机科学的历史长河中，C语言以其高效性和灵活性占据了重要的地位。学习C语言不仅仅是为了掌握一种编程技能，更是理解计算机底层运作和软件工程实践的重要途径。
