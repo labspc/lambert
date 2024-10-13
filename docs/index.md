@@ -18,7 +18,7 @@ hero:
 #      link: /llm/
       - theme: alt
         text: 导航 🔍
-        link: /nav.md
+        link: /guide.md
 features:
   - title: 生活 😄
     details: Finding balance between work and leisure
