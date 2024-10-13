@@ -1,4 +1,4 @@
-## 学习《Types and Programming Languages》的笔记2：对编程语言与英语学习的思考
+# 学习《Types and Programming Languages》的笔记2：对编程语言与英语学习的思考
 
 ![Types and Programming Languages](https://www.cis.upenn.edu/~bcpierce/tapl/taplcover.jpg)
 https://www.cis.upenn.edu/~bcpierce/tapl/taplcover.jpg
