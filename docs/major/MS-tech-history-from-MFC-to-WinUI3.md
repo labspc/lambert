@@ -1,0 +1,110 @@
+# 追溯微软技术的演变：从 MFC 到 WinUI3
+
+因为有打算未来去学习 C++，今天在复习 C 语言的时候，突然冒出一个点子。也不算突然吧，很久之前我想在 macOS 下学习 C++，后来发现有些麻烦，最终选择了 Surface Laptop 这台小本子，我觉得这是学习 Windows 下 C++ 开发的绝佳利器。
+
+在使用 Surface Laptop 之后，我对微软这家公司产生了浓厚的兴趣，重新配置了 Windows 开发本，感觉一切又熟悉起来。我有这样的想法，尝试阅读有关微软公司的历史，以及它们的一些技术和产品的演变过程等等。这就要提到 MFC，虽然它是一个很老的玩意儿，但我想去了解 MFC 出现的历史原因，认为有这个必要，这对于理解新技术的演变是有帮助的。
+
+## Windows 与 Win API
+
+1993年 Windows NT 发布，1995年 Windows 95 发布，2001年 Windows XP 发布，2009年 Windows 7 发布，2015年7月29日 Windows 10 发布，2021年6月24日 Windows 11 发布。这一时间线参照了 B 站视频【【进化史】Windows系统（1985-2021）| 精益求精】](https://www.bilibili.com/video/BV1C64y1Q7N1/?share_source=copy_web&vd_source=59d47afd43812c161ca8ef67a1dfea4d)。
+
+我比较喜欢的版本是 Windows 10，一直以来都是，我的 Surface 上跑的也是 Win10。不知不觉已经过去七八年，貌似 22H2 版本到 2025 年结束，正好是 Win10 的十周年，届时一定要庆祝一下。
+
+> A scoped and streamlined update Windows 10, version 22H2 is a scoped release focused on quality improvements to the overall Windows experience in existing feature areas such as quality, productivity and security. We will deliver the 2022 Update using servicing technology (like that used for the monthly update process) to meet our customers’ needs based on feedback. For consumer or commercial users with devices running version 20H2 or later, the 2022 Update will have a fast installation experience. Home and Pro editions of the 2022 Update will receive 18 months of servicing, and Enterprise and Education editions will have 30 months of servicing. More information can be found on the Microsoft Lifecycle Policy site and we will continue to support at least one version of Windows 10 through Oct. 14, 2025.  
+> [原文链接](https://blogs.windows.com/windowsexperience/2022/10/18/how-to-get-the-windows-10-2022-update/)  
+> [版本信息链接](https://learn.microsoft.com/zh-cn/windows/release-health/release-information)
+
+所以，Windows 10 的生命周期还挺长的，到 2025 年停更之前，我还是会坚定地使用 Win10。上面两个网址，第一个是这段引用的原文，第二个是有关 Windows 10 的版本信息。
+
+### Windows API
+
+在了解 Windows 时间线之前，我们需要先了解一下 Windows API。可以直接从 [Microsoft Learn](https://learn.microsoft.com/en-us/windows/apps/get-started/start-here) 开始。
+
+1985年11月20日，Windows 1.0 发布，这是 MS-DOS 的图形化版本（这个表述不太严谨，但也没啥大错），刚看 Windows API 也是在这个时候发布的，那是不是二者有什么联系呢？
+
+### Win32
+
+关于 Win32 的详细信息可以参考 [Win32 API](https://learn.microsoft.com/en-us/windows/win32/)：
+
+> Win32 is the 32-bit application programming interface (API) for 32-bit versions of Windows (NT, 95, and later versions). The API consists of functions implemented, as with Win16, in system DLLs. The core DLLs of Win32 are kernel32.dll, user32.dll, and gdi32.dll. Win32 was introduced with Windows NT. The version of Win32 shipped with Windows 95 was initially referred to as Win32c, with c meaning compatibility. This term was later abandoned by Microsoft in favor of Win32.  
+> [维基百科链接](https://en.wikipedia.org/wiki/Windows_API#Versions)
+
+
+图片源自：[YouTube 视频](https://youtu.be/S4lQwJawOzI?si=zAwRp8OzB1zy7j71&t=96)。这个视频推荐去看看，讲了 Windows.h 和 .dll 的区别。所以说，Win32 也是一套 Windows API，一直到现在（Win11）。关于 API 的理解，最开始我在了解的时候也很迷。其实，可以很简单地理解为，你要让台灯亮，你把插座插进去，好灯就亮了。这个插座口可以理解成 API，至于电怎么来的，你就不用管了。就像上图这座冰山一样。你会用就行，至于这个规范就是二插口不能插三插口的电器，超过 220V 不能直接插（这个 220V 比喻的是电压不一样，电器不能混用，就跟你海淘的美版产品需要个转换头一样），这就是 API 规范，你遵守这个规范就行了，至于你接台灯、接电脑、接冰箱等，我电力公司不关心你，只需要交点费用就行。这让我想到很多，某些平台也会定期发消息告诉你滥用接口，不再提供某种服务。
+
+### WinRT
+
+关于 WinRT 的视频可以参考：[微软官方介绍视频](https://www.youtube.com/watch?v=rJxQnhiK4TQ)。
+
+- WinRT 是一种使用 WinAPI 的新方法
+- 100% 兼容 C++，支持 C++17
+- 代码可读性高，生成的二进制文件更小
+
+可以访问 [WinRT API 介绍](https://learn.microsoft.com/zh-cn/windows/uwp/cpp-and-winrt-apis/intro-to-using-cpp-with-winrt) 来获取更多信息。微软官方目前比较推荐使用 WinRT。
+
+### Win32 和 WinRT 的区别
+
+Win32 API 和 WinRT API 都是用于 Windows 桌面应用程序开发的 API，但它们有一些重要的区别：
+
+1. **年代和历史**：
+    - **Win32 API**：自 Windows 3.x 开始引入，基于 C 语言，并且具有悠久的历史，支持广泛的 Windows 应用程序。
+    - **WinRT API**：在 Windows 8 中引入，旨在支持通用 Windows 应用程序（通常是 Metro 或 Modern 应用程序）的开发。
+
+2. **编程模型**：
+    - **Win32 API**：使用传统的过程式编程模型，开发者需要处理消息循环、窗口过程等。
+    - **WinRT API**：基于 COM（Component Object Model）的对象模型，支持面向对象的编程。
+
+3. **支持平台**：
+    - **Win32 API**：跨多个 Windows 平台，包括 Windows 95、98、NT、2000、XP、Vista、7 等。
+    - **WinRT API**：更加面向现代 Windows 平台，包括 Windows 8 及更高版本。
+
+4. **语言支持**：
+    - **Win32 API**：主要用 C/C++ 编写，也支持其他编程语言，如 Delphi、Visual Basic 等。
+    - **WinRT API**：更加多语言友好，支持 C++、C#、JavaScript 和 Visual Basic。
+
+5. **安全性和隔离**：
+    - **Win32 API**：应用程序通常在受限的用户权限下运行。
+    - **WinRT API**：应用程序以沙箱模式运行，受到更严格的隔离和权限控制。
+
+Win32 和 WinRT 代表了 Windows 应用开发的两种不同方式。一旧一新，虽然我对 UWP 的打包格式不太喜欢，但我还是比较想用 WinRT 和 C++ 开发现代 Windows 桌面应用（Modern Win Desktop App）。
+
+## MSVC 与 MFC
+
+接下来，我们聊聊 MSVC，以下是维基百科上的简介：
+
+> Microsoft Visual C++ (MSVC) 是微软提供的 C++ 编译器和集成开发环境 (IDE)，属于 Microsoft Visual Studio 的一部分。它为 Windows 提供了一个强大的开发工具。MSVC 包含对 Windows API 和 MFC 的支持。
+> [MSVC 链接](https://zh.wikipedia.org/wiki/Microsoft_Visual_C%2B%2B)
+
+### MFC
+
+MFC 是 Microsoft Foundation Classes 的缩写。以下是 MFC 的一些特点：
+
+- 提供了一组 C++ 类，用于创建 Windows 应用程序，封装了 Windows API 的复杂性。
+- 提供了文档/视图架构，简化了开发复杂应用程序的过程。
+- 支持 Windows 事件处理和消息机制。
+
+你可以参考 [MFC 官方文档](https://learn.microsoft.com/en-us/cpp/mfc/overview-of-mfc?view=msvc-160) 来了解更多。
+
+### WinUI3
+
+WinUI3 是 WinUI 的最新版本，适用于 Windows 10 和 Windows 11。WinUI3 的特点包括：
+
+- 现代化的 UI 控件和设计。
+- 轻量级和性能优化，适合创建高效的应用程序。
+- 支持 Windows 应用程序的最新功能。
+
+更多信息可以参考：
+- [WinUI3 官方文档](https://learn.microsoft.com/en-us/windows/apps/winui/winui3/overview)。
+
+- [【一次弄懂windows开发：MFC，Winform，WPF，UWP，Winui3】 【精准空降到 00:00】](https://www.bilibili.com/video/BV1QP411e78S/?share_source=copy_web&vd_source=59d47afd43812c161ca8ef67a1dfea4d&t=0)
+
+- https://www.cnblogs.com/dino623/p/Get-started-with-WinUI-3-for-desktop-apps.html
+
+- https://www.cnblogs.com/duwenlong/p/16488997.html
+
+## 总结
+
+到这里，我们对 Windows 开发的历史有了一些初步的了解，从 MFC 到 WinUI3 的演变过程，也许会有很多值得我们去探索和研究的地方。我个人认为，了解过去是理解未来的基础。
+
+---
+**更新于**：2023年5月22日

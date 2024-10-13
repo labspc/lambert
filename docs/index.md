@@ -9,7 +9,7 @@ hero:
   actions:
     - theme: alt
       text: 生活 😄
-      link: /diary/
+      link: /diary/phy-course.md
     - theme: alt
       text: 编程 💻
       link: /major/

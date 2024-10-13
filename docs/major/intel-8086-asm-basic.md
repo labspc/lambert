@@ -1,0 +1,189 @@
+### 1.进入debug模式
+
+![截屏2024-03-20 15.08.24](https://img.imotao.com/i/2024/03/20/65fa8c1498454.png)
+
+`r` 查看
+
+
+
+### 2. mov指令测试
+
+指令以`CS:IP` 格式进行读取，后跟8086 asm实际指令：
+
+![截屏2024-03-20 15.12.43](https://img.imotao.com/i/2024/03/20/65fa8c90538d1.png)
+
+可以看到，当我们再次“唤醒” `CS:IP` 时，光标停留在上次指令结束的地方。
+
+
+
+![截屏2024-03-20 15.16.04](https://img.imotao.com/i/2024/03/20/65fa8d5e256a6.png)
+
+`IP` 偏移，不知道这么说对不对，每次改变为“ **2** ”。
+
+测试代码如下：
+
+```asm
+; 设置当前 AX=0008，BX=0008，IP=0107
+
+mov ah,13
+mov bl,13
+
+; 输出为上图：
+; AX=1308，BX=0013，IP=010B
+```
+
+
+
+### 3. add指令测试
+
+![截屏2024-03-20 15.25.18](https://img.imotao.com/i/2024/03/20/65fa8f675bcab.png)
+
+```asm
+; 测试 add 指令
+add ax,3
+add bx,ax
+add cx,bx
+```
+
+![截屏2024-03-20 15.27.05](https://img.imotao.com/i/2024/03/20/65fa8fd6d3999.png)
+
+
+
+### 4. sub指令测试
+
+小tips：超出四位，或者超出两位，都会直接舍掉。 进行计算验证的时候，可以使用计算器程序员模式来进行检验，这个macOS 和 Windows下都有。
+
+![截屏2024-03-20 15.40.55](https://img.imotao.com/i/2024/03/20/65fa9319cb6d7.png)
+
+```asm
+; 测试sub指令操作两个寄存器相减
+sub ax,bx
+
+```
+
+
+
+
+
+### 5. 关于越界以下进行说明：
+
+![截屏2024-03-20 15.44.15](https://img.imotao.com/i/2024/03/20/65fa93e8b671f.png)
+
+
+
+多余进位会直接舍掉，这里`bl` 就是这个道理，计算结果为`F2` 。
+
+![截屏2024-03-20 15.51.55](https://img.imotao.com/i/2024/03/20/65fa95add1e7c.png)
+
+
+
+### 6. 小插曲： 在mac m1 上跑 docker  brew🍺
+
+现在是2024年，docker已经支持 AppleSilicon，可以直接 brew🍺就行：https://formulae.brew.sh/formula/docker
+
+
+
+docker image地址：
+
+```
+https://hub.docker.com/r/jeremiedevelops/easy-masm
+```
+
+有个项目是在 mac m1上简单跑 masm，晚上试了下docker，好麻烦，不如 dosbox-x 来的直接。
+
+
+
+### 7.寄存器表
+
+通用寄存器、特殊用途寄存器和段寄存器的x86汇编寄存器对照表：
+
+| 简写  | 中文名称               | 英文全称                   | 说明                     |
+| ----- | ---------------------- | -------------------------- | ------------------------ |
+| AX    | 累加器                 | Accumulator                | 16位通用寄存器           |
+| BX    | 基址寄存器             | Base Register              | 16位通用寄存器           |
+| CX    | 计数器                 | Counter Register           | 16位通用寄存器           |
+| DX    | 数据寄存器             | Data Register              | 16位通用寄存器           |
+| SI    | 源变址寄存器           | Source Index Register      | 16位通用寄存器           |
+| DI    | 目的变址寄存器         | Destination Index Register | 16位通用寄存器           |
+| BP    | 基址指针寄存器         | Base Pointer Register      | 16位通用寄存器           |
+| SP    | 堆栈指针寄存器         | Stack Pointer Register     | 16位通用寄存器           |
+| AL    | 累加器的低8位          | Accumulator Low            | 8位通用寄存器            |
+| AH    | 累加器的高8位          | Accumulator High           | 8位通用寄存器            |
+| BL    | 基址寄存器的低8位      | Base Low                   | 8位通用寄存器            |
+| BH    | 基址寄存器的高8位      | Base High                  | 8位通用寄存器            |
+| CL    | 计数器的低8位          | Counter Low                | 8位通用寄存器            |
+| CH    | 计数器的高8位          | Counter High               | 8位通用寄存器            |
+| DL    | 数据寄存器的低8位      | Data Low                   | 8位通用寄存器            |
+| DH    | 数据寄存器的高8位      | Data High                  | 8位通用寄存器            |
+| EAX   | 扩展累加器             | Extended Accumulator       | 32位通用寄存器           |
+| EBX   | 扩展基址寄存器         | Extended Base              | 32位通用寄存器           |
+| ECX   | 扩展计数器             | Extended Counter           | 32位通用寄存器           |
+| EDX   | 扩展数据寄存器         | Extended Data              | 32位通用寄存器           |
+| ESI   | 扩展源变址寄存器       | Extended Source Index      | 32位通用寄存器           |
+| EDI   | 扩展目的变址寄存器     | Extended Destination Index | 32位通用寄存器           |
+| EBP   | 扩展基址指针寄存器     | Extended Base Pointer      | 32位通用寄存器           |
+| ESP   | 扩展堆栈指针寄存器     | Extended Stack Pointer     | 32位通用寄存器           |
+| RAX   | 高位扩展累加器         | Extended Accumulator       | 64位通用寄存器           |
+| RBX   | 高位扩展基址寄存器     | Extended Base              | 64位通用寄存器           |
+| RCX   | 高位扩展计数器         | Extended Counter           | 64位通用寄存器           |
+| RDX   | 高位扩展数据寄存器     | Extended Data              | 64位通用寄存器           |
+| RSI   | 高位扩展源变址寄存器   | Extended Source Index      | 64位通用寄存器           |
+| RDI   | 高位扩展目的变址寄存器 | Extended Destination Index | 64位通用寄存器           |
+| RBP   | 高位扩展基址指针寄存器 | Extended Base Pointer      | 64位通用寄存器           |
+| RSP   | 高位扩展堆栈指针寄存器 | Extended Stack Pointer     | 64位通用寄存器           |
+| RIP   | 指令指针寄存器         | Instruction Pointer        | 存储当前执行指令的地址   |
+| FLAGS | 标志寄存器             | Flags Register             | 存储CPU的状态信息        |
+| CS    | 代码段寄存器           | Code Segment Register      | 存储代码段的起始地址     |
+| DS    | 数据段寄存器           | Data Segment Register      | 存储数据段的起始地址     |
+| SS    | 堆栈段寄存器           | Stack Segment Register     | 存储堆栈段的起始地址     |
+| ES    | 附加段寄存器           | Extra Segment Register     | 用于一般目的的附加数据段 |
+| FS    | 附加段寄存器           | Extra Segment Register     | 用于一般目的的附加数据段 |
+| GS    | 附加段寄存器           | Extra Segment Register     | 用于一般目的的附加数据段 |
+
+这些寄存器在x86汇编语言编程中起着重要作用，用于存储数据、地址、指令、状态信息等。
+
+
+
+### 8. 段(未完)
+
+![截屏2024-03-21 12.03.48](https://img.imotao.com/i/2024/03/21/65fbb1da7ecd1.png)
+
+执行前3条指令：
+
+- ax=1000
+- ss=1000
+- sp=0020
+
+![截屏2024-03-21 12.05.49](https://img.imotao.com/i/2024/03/21/65fbb2322e077.png)
+
+
+
+执行后2条指令：
+
+- ax=0DAB (cs=0DAB)
+- ds=0DAB
+
+![截屏2024-03-21 12.14.13](https://img.imotao.com/i/2024/03/21/65fbb41f69511.png)
+
+然后：
+
+```asm
+mov ax,[0]         ; [0]处的字型数据送入ax
+; ah=20
+; al=CD
+```
+
+![截屏2024-03-21 12.18.58](https://img.imotao.com/i/2024/03/21/65fbb53e9b096.png)
+
+
+
+总之，段是我们自己定义的。一个段可以是数据段DS，也可以是栈段SS。
+
+| DS   | 数据段寄存器 | Data Segment Register  | 存储数据段的起始地址 |
+| :--- | ------------ | ---------------------- | -------------------- |
+| SS   | 堆栈段寄存器 | Stack Segment Register | 存储堆栈段的起始地址 |
+
+
+---
+**更新于**：2024年3月21日 
+

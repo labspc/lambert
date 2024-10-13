@@ -9,25 +9,24 @@ export default defineConfig({
     },
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Blog', link: '/blog' }, // New nav item
       { text: 'About', link: '/about' } // New nav item
     ],
-    sidebar: [
-      {
-        text: 'Examples',
-        items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
-        ]
-      },
-      {
-        text: 'New Section', // New sidebar section
-        items: [
-          { text: 'Item 1', link: '/new-section/item-1' },
-          { text: 'Item 2', link: '/new-section/item-2' }
-        ]
-      }
-    ],
+    // sidebar: [
+    //   {
+    //     text: 'Examples',
+    //     items: [
+    //       { text: 'Markdown Examples', link: '/markdown-examples' },
+    //       { text: 'Runtime API Examples', link: '/api-examples' }
+    //     ]
+    //   },
+    //   {
+    //     text: 'New Section', // New sidebar section
+    //     items: [
+    //       { text: 'Item 1', link: '/new-section/item-1' },
+    //       { text: 'Item 2', link: '/new-section/item-2' }
+    //     ]
+    //   }
+    // ],
     socialLinks: [
       { icon: 'github', link: 'https://github.com/labspc' }
     ],
