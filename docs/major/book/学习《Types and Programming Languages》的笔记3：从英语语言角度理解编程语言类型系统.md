@@ -1,4 +1,4 @@
-# 学习《Types and Programming Languages》的笔记：从英语语言角度理解编程语言类型系统
+# 学习《Types and Programming Languages》的笔记3：从英语语言角度理解编程语言类型系统
 
 ![Types and Programming Languages](https://www.cis.upenn.edu/~bcpierce/tapl/taplcover.jpg)
 https://www.cis.upenn.edu/~bcpierce/tapl/taplcover.jpg

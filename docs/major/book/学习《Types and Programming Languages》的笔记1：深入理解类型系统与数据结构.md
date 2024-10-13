@@ -1,4 +1,4 @@
-# 学习《Types and Programming Languages》的笔记：深入理解类型系统与数据结构
+# 学习《Types and Programming Languages》的笔记1：深入理解类型系统与数据结构
 
 ![Types and Programming Languages](https://www.cis.upenn.edu/~bcpierce/tapl/taplcover.jpg)
 https://www.cis.upenn.edu/~bcpierce/tapl/taplcover.jpg
