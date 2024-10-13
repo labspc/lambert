@@ -5,7 +5,7 @@ layout: home
 hero:
   name: "labspc"
   text: "Lambert 的卡片盒"
-  tagline: "生活、编程&大模型 👇"
+  tagline: "生活、编程&大模型 🔍"
   actions:
 #    - theme: alt
 #      text: 生活 😄
@@ -16,9 +16,9 @@ hero:
 #    - theme: alt
 #      text: 大模型 🤖
 #      link: /llm/
-      - theme: alt
-        text: 导航 🔍
-        link: /guide.md
+      - theme: brand
+        text: 点击下方进行阅读 👇
+#        link: /guide.md
 features:
   - title: 生活 😄
     details: Finding balance between work and leisure

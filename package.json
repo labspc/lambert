@@ -8,6 +8,8 @@
     "@types/node": "^22.7.5"
   },
   "dependencies": {
-    "vite-plugin-vitepress-auto-sidebar": "^1.7.0"
+    "busuanzi.pure.js": "^1.0.3",
+    "vite-plugin-vitepress-auto-sidebar": "^1.7.0",
+    "vitepress-markdown-timeline": "^1.2.1"
   }
 }

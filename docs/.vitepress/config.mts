@@ -1,6 +1,8 @@
 // docs/.vitepress/config.mts
 import { defineConfig } from 'vitepress';
 import AutoSidebar from 'vite-plugin-vitepress-auto-sidebar';
+import timeline from "vitepress-markdown-timeline";
+
 
 export default defineConfig({
   title: 'labspc',
@@ -36,6 +38,15 @@ export default defineConfig({
       }),
     ],
   },
+
+  markdown: {
+    lineNumbers: true,
+    config: (md) => {
+      md.use(timeline);
+    },
+  },
+
+
   themeConfig: {
     search: {
       provider: 'local'
