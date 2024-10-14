@@ -1,9 +1,11 @@
-# 使用 GitHub Actions 自动化构建 VitePress 内容：从入门到实战
+# 使用 GitHub Actions 自动化构建 VitePress 内容
 
 
 痛点：本站点内容更新每次都需要进行本地化的手动构建，而后进行推送，一方面占用了本地的硬盘资源，另一方面，每次更新都需要手动构建，非常麻烦，我们应该更专注于内容而不被其他事所打扰。
 需求：在使用 VitePress 构建的文档项目中，当有新的内容提交到仓库时，自动触发 GitHub Actions 。
 
+
+**更新**：使用 `Vercel` 部署，不再需要手动构建，只需要提交代码，即可自动构建并部署。 (**强烈推荐！**)
 
 ## 引言
 在现代化的开发工作流中，自动化已成为提高效率的关键因素之一。GitHub Actions 是一个强大的 CI/CD 工具，能够帮助开发者自动化代码构建、测试、部署等任务。本文将介绍 GitHub Actions 的基础知识，并通过一个具体示例讲解如何使用 GitHub Actions 实现 VitePress 内容的自动化构建与部署。
@@ -53,7 +55,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '16'  # 可根据需要调整 Node.js 版本
+        node-version: '18'  # 可根据需要调整 Node.js 版本
 
     - name: Install dependencies
       run: npm install
@@ -61,11 +63,11 @@ jobs:
     - name: Build VitePress site
       run: npm run build
 
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
+    - name: Deploy to GitHub Pages # 部署到 xxx (你想部署的地方)
+      uses: peaceiris/actions-gh-pages@v3 # 这里是部署到 GitHub Pages 
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./docs/.vitepress/dist
+        publish_dir: ./docs/.vitepress/dist # 构建生成的静态站点目录(按实际进行修改)
 ```
 
 #### 配置详解：
@@ -89,7 +91,7 @@ jobs:
 ---
 
 #### 总结
-GitHub Actions 提供了便捷的自动化构建和部署支持，尤其适合像 VitePress 这样需要频繁更新的文档站点。通过设置一个简单的工作流文件，你可以显著提高工作效率，减少手动操作。希望本文能帮助你更好地掌握 GitHub Actions 的基础用法，并应用到实际项目中去。
+GitHub Actions 提供了便捷的自动化构建和部署支持，尤其适合像 VitePress 这样需要频繁更新的文档站点。通过设置一个简单的工作流文件，你可以显著提高工作效率，减少手动操作。
 
 ---
 **更新于**：2024年10月14日
