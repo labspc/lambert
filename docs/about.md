@@ -32,11 +32,11 @@
 - **昵称**：Lambert
 
 - **职业**：大龄本科生(就读于某工科院校 CS 专业)
-- **GitHub**：[labspc](https://github.com/labspc "@labspc")
+- **GitHub**：[@labspc](https://github.com/labspc "@labspc")
 
 - **Bilibili**：[@labspc](https://space.bilibili.com/370214419 "@labspc")
 
-- **播客**： [小宇宙FM](https://www.xiaoyuzhoufm.com/podcast/649c5f4764b8ac51c8368155 "小宇宙FM")
+- **播客**： [@labspc](https://www.xiaoyuzhoufm.com/podcast/649c5f4764b8ac51c8368155 "@labspc 小宇宙FM")
  
 - **邮箱**：lamberts163[at]163.com —— 欢迎随时交流！
 
